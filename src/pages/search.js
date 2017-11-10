@@ -35,7 +35,7 @@ class Search extends Component {
         {end: newSearchDate}
       )
     }
-    if(this.state.start>this.state.end){
+    if(this.state.start>this.state.end || this.state.start === "" || this.state.end === ""){
       this.setState({
         error: true
       })
