@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {ProgressBar} from 'react-materialize'
+import {
+  ProgressBar,
+  Navbar
+} from 'react-materialize'
 import {
   Link,
 } from 'react-router-dom'
@@ -36,7 +39,10 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <Link to="/search">Search</Link>
+        <Navbar brand='React' right>
+        	<Link to="/search">Search</Link>
+        </Navbar>
+
         <h2>Prochaines Fermetures</h2>
         {!this.state.data.length ?
           <ProgressBar /> :

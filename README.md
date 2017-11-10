@@ -1,16 +1,14 @@
-Rendu du projet React (Valentin VIGUIER)
-
+# Rendu du projet React (Valentin VIGUIER)
 Ce fut mon premier projet en react et j'ai eu pas mal de complications pour commencer ...
 
-Installation :
-
+## Installation :
 ### `git pull`
 
 ### `npm install`
 
 ### `npm start` ou `PORT=WantedPortNumber npm start`
 
-Pour ce qui est des fonctionnalités :
+## Fonctionnalités :
 - [x] : Loading
 - [x] : Error
 - [x] : Routing (depuis la liste vers page single)

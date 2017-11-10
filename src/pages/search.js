@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import moment from 'moment'
+import {
+  Navbar
+} from 'react-materialize'
+import {
+  Link
+} from 'react-router-dom'
+
 import List from './../components/list.js'
+
 
 class Search extends Component {
 
@@ -65,14 +73,22 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <label>From : </label>
-        <input type="date" defaultValue={"jj/mm/aaaa"} name="start" onChange={this.handleChange}/>
-        <label>To : </label>
-        <input type="date" defaultValue={"jj/mm/aaaa"} name="end" onChange={this.handleChange}/>
-        {this.state.error === true || this.state.empty === true ?
-          <div>Date invalide</div> :
-          <List data={this.state.data}/>
-        }
+        <Navbar brand='React' right>
+          <Link to="/">Home</Link>
+        </Navbar>
+        <div class="page">
+          <h2>Search</h2>
+          <div id="searchDate">
+            <label class="search">From : </label>
+            <input class="search" type="date" defaultValue={"jj/mm/aaaa"} name="start" onChange={this.handleChange}/>
+            <label class="search">To : </label>
+            <input class="search" type="date" defaultValue={"jj/mm/aaaa"} name="end" onChange={this.handleChange}/>
+            {this.state.error === true || this.state.empty === true ?
+              <div class="invalidDate">Date invalide</div> :
+              <List data={this.state.data}/>
+            }
+          </div>
+        </div>
       </div>
     )
   }

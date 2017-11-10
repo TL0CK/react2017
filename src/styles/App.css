@@ -26,3 +26,22 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+h2{
+  text-align: center;
+}
+
+.page{
+  width: 100%;
+  text-align: center;
+}
+
+.invalidDate,
+#searchDate{
+  width: 33%;
+  display: inline-block;
+}
+
+#searchDate{
+  background-color: rgb(211, 220, 219);
+}

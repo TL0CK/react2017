@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {Navbar,NavItem,ProgressBar} from 'react-materialize'
 import {
-  Link,
-  Redirect
+  Link
 } from 'react-router-dom'
 
-import List from './../components/list.js'
 import ListSolo from './../components/list-solo.js'
 
 class SinglePage extends Component {
@@ -165,7 +163,7 @@ class SinglePage extends Component {
     let previousId = id - 1;
 
     if (isNaN(id) || id <= 0 || id > this.state.length){
-      if (match.params.id == "search"){
+      if (match.params.id === "search"){
         return(
           //je sais c'est moche mais je ne vois pas comment régler le problème autrement ...
           <div>
@@ -183,11 +181,11 @@ class SinglePage extends Component {
     else{
       return (
         <div>
-          <Link to="/">Home</Link>
-          <br/>
-          <Link to={`/${previousId}`}>Previous</Link>
-          <br/>
-          <Link to={`/${nextId}`}>Next</Link>
+          <Navbar brand='React' right>
+            <NavItem><Link to="/">Home</Link></NavItem>
+            <NavItem><Link to={`/${previousId}`}>Previous</Link></NavItem>
+            <NavItem><Link to={`/${nextId}`}>Next</Link></NavItem>
+          </Navbar>
           {!this.state.data ?
             <ProgressBar /> :
             <ListSolo data={this.state.data}/>
