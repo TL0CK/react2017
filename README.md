@@ -16,10 +16,10 @@ Pour ce qui est des fonctionnalités :
 - [x] : Routing (depuis la liste vers page single)
 - [x] : Routing  (Single vers homepage)
 - [x] : Error (Différencier les types d'erreurs) => Merci à Alexandre Duviviers pour m'avoir montré
-- [ ] : Search => Non fonctionnelle mais j'ai quand même push mon fichier ... j'ai essayé pendant plusieurs heures pour trouver une solution viable mais je n'ai pas encore assez l'habitude du React pour être vraiment à l'aise ...
+- [x] : Search => Fonctionnelle mais je pense que le setstate se fait après le fetch ... je ne vois pas comment y remédier ! (sachant que je ne peux pas faire un .then après un if)
 - [x] : Routing (Prev / next sur la single)
 - [x] : Error: Afficher une page 404 si une ID est invalide
-- [ ] : Search (gérer le cas ou on envoie des dates invalides)
+- [X] : Search (gérer le cas ou on envoie des dates invalides)
 - [ ] : Refactoring
 
 Pour ce qui est du CSS ... je n'ai pas vraiment bossé dessus ^^'

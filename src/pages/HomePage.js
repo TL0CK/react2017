@@ -13,7 +13,8 @@ class HomePage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      data: []
+      data: [],
+      length: "0"
     }
   }
 
@@ -27,6 +28,7 @@ class HomePage extends Component {
       console.log('Data from API',jsonData);
       this.setState({
         data: jsonData,
+        length: jsonData.length
       })
     })
   }

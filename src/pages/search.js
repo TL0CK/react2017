@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment'
+import List from './../components/list.js'
 
 class Search extends Component {
 
@@ -8,26 +9,14 @@ class Search extends Component {
     this.state = {
       data: [],
       start: "",
-      end: ""
+      end: "",
+      empty: false,
+      error: false
     }
   }
 
-  componentDidMount(){
-    fetch('http://localhost:1337')
-    .then((res) => {
-      console.log('Server response' , res);
-      return res.json()
-    })
-    .then(jsonData =>{
-      console.log('Data from API',jsonData);
-      this.setState({
-        data: jsonData,
-      })
-    })
-  }
-
   handleChange = (e) => {
-    var newSearchDate = moment(e.target.value, "YYYY-MM-DD").format("DD/MM/YY");
+    var newSearchDate = moment(e.target.value, "YYYY-MM-DD").format("DD-MM-YY");
     if (e.target.name === "start"){
       this.setState(
         {start: newSearchDate}
@@ -38,36 +27,52 @@ class Search extends Component {
         {end: newSearchDate}
       )
     }
-    this.filterByDate();
-  }
-
-  checkEnd(date) {
-      return date <= this.state.end;
-  }
-
-  checkStart(date) {
-      return date >= this.state.start;
-  }
-
-  filterByDate() {
-    this.setState(
-      {data: this.state.data.filter(this.checkStart(this.state.start))}
-    )
-    this.setState(
-      {data: this.state.data.filter(this.checkEnd(this.state.end))}
-    )
+    if(this.state.start>this.state.end){
+      this.setState({
+        error: true
+      })
+    }
+    else{
+      fetch('http://localhost:1337'+"?from=" + this.state.start + "&to=" + this.state.end)
+      .then((res) => {
+        console.log('Server response' , res);
+        return res.json()
+      })
+      .then(jsonData =>{
+        console.log('Data from API',jsonData);
+        if(jsonData.length === 0){
+          this.setState({
+            empty: true,
+          });
+        }
+        else{
+          this.setState({
+            data: jsonData,
+            error: false,
+            empty: false
+          })
+        }
+      })
+      .catch(err => {
+        this.setState({
+          error: true,
+        });
+        this.throwError(err);
+      });
+    }
   }
 
   render() {
-    const today = moment().format("YYYY-MM-DD");
-    var random = Math.floor((Math.random() * 365) + 1);
-    const randomDate = moment().add(random, 'day').format("YYYY-MM-DD");
     return (
       <div>
         <label>From : </label>
-        <input type="date" defaultValue={today} name="start" onChange={this.handleChange}/>
+        <input type="date" defaultValue={"jj/mm/aaaa"} name="start" onChange={this.handleChange}/>
         <label>To : </label>
-        <input type="date" defaultValue={randomDate} name="end" onChange={this.handleChange}/>
+        <input type="date" defaultValue={"jj/mm/aaaa"} name="end" onChange={this.handleChange}/>
+        {this.state.error === true || this.state.empty === true ?
+          <div>Date invalide</div> :
+          <List data={this.state.data}/>
+        }
       </div>
     )
   }

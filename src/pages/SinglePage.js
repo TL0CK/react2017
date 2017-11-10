@@ -14,20 +14,22 @@ class SinglePage extends Component {
     super(props);
     this.state = {
       data: [],
+      legnth: "0",
       error: false,
     }
   }
 
+
   componentDidMount() {
     fetch('http://localhost:1337/'+this.props.match.params.id)
     .then((res) => {
-      console.log('Server response' , res);
+      console.log('Server response' , res)
       return res.json()
     })
     .then(jsonData =>{
       console.log('Data from API',jsonData);
       this.setState({
-        data: jsonData,
+        data: jsonData
       })
         console.log(this.state.data)
         //les datas sont bien dans le this.state.data mais la page ne marche pas ...
@@ -78,6 +80,18 @@ class SinglePage extends Component {
           alert('An error occured');
           break;
       };
+    })
+
+    fetch('http://localhost:1337/')
+    .then((res) => {
+      console.log('Server response' , res)
+      return res.json()
+    })
+    .then(jsonData =>{
+      console.log('Data from API',jsonData);
+      this.setState({
+        length: jsonData.length
+      })
     })
   }
 
@@ -150,7 +164,7 @@ class SinglePage extends Component {
     let nextId = id + 1;
     let previousId = id - 1;
 
-    if (isNaN(id) || id <= 0){
+    if (isNaN(id) || id <= 0 || id > this.state.length){
       if (match.params.id == "search"){
         return(
           //je sais c'est moche mais je ne vois pas comment régler le problème autrement ...
