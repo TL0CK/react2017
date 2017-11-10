@@ -12,7 +12,7 @@ class SinglePage extends Component {
     super(props);
     this.state = {
       data: [],
-      legnth: "0",
+      length: 1,
       error: false,
     }
   }
