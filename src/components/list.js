@@ -10,6 +10,7 @@ class List extends Component {
             date={row.date}
             start={row.start}
             end={row.end}
+            key={row.key}
             id={row.id}
           />)
         }

@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 import List from './../components/list.js'
+import ListSolo from './../components/list-solo.js'
 
 class SinglePage extends Component {
 
@@ -173,9 +174,9 @@ class SinglePage extends Component {
           <Link to={`/${previousId}`}>Previous</Link>
           <br/>
           <Link to={`/${nextId}`}>Next</Link>
-          {!this.state.data.length ?
+          {!this.state.data ?
             <ProgressBar /> :
-            <List data={this.state.data}/>
+            <ListSolo data={this.state.data}/>
           }
         </div>
       );
